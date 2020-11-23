@@ -1,17 +1,14 @@
 import utils from './utils'
 
-export default function pHash(image) {
-  const size = 32
+export default function pHash(image, config = {}) {
+  const size = config.size || 32
+  const debug = config.debug || false
 
-  const canvas = utils.createCanvas(image)
-  const grayscale = utils.grayscale(canvas)
-  const resized = utils.resize(canvas, size)
+  const canvas = utils.createCanvas(image, size)
 
-  let img = new Image()
-  img.src = resized.toDataURL()
-  document.body.appendChild(img)
-
-  console.log('<img src="' + resized.toDataURL() + '" width="500" height="500" />')
+  if (debug) {
+    console.log(`<img src="${canvas.toDataURL()}" width="500" height="500" />`)
+  }
 
   let matrix = []
   let row = []
@@ -20,7 +17,7 @@ export default function pHash(image) {
 
   for (let y = 0; y < size; y++) {
     for (let x = 0; x < size; x++) {
-      let rgb = utils.pickColor(resized, x, y)
+      let rgb = utils.pickColor(canvas, x, y)
       row[x] = parseInt(Math.floor(rgb[0] * 0.299 + rgb[1] * 0.587 + rgb[2] * 0.114))
     }
     rows[y] = utils.calculateDCT(row)
