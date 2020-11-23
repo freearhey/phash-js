@@ -2,8 +2,16 @@ import utils from './utils'
 
 export default function pHash(image) {
   const size = 32
-  // Resize the image.
-  const resized = utils.resize(image, size)
+
+  const canvas = utils.createCanvas(image)
+  const grayscale = utils.grayscale(canvas)
+  const resized = utils.resize(canvas, size)
+
+  let img = new Image()
+  img.src = resized.toDataURL()
+  document.body.appendChild(img)
+
+  console.log('<img src="' + resized.toDataURL() + '" width="500" height="500" />')
 
   let matrix = []
   let row = []

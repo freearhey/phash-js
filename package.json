@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "npx rollup -c --watch",
     "build": "npx rollup -c",
-    "test": "jest"
+    "test": "npm run build && npx jest"
   },
   "keywords": [
     "phash",
@@ -28,6 +28,7 @@
     "rollup-plugin-uglify": "^6.0.4"
   },
   "dependencies": {
+    "caman": "^4.1.2",
     "canvas": "^2.6.1"
   }
 }
