@@ -1,4 +1,3 @@
-// import * as Magick from 'https://knicknic.github.io/wasm-imagemagick/magickApi.js'
 const Magick = require('wasm-imagemagick')
 
 class Hash {
@@ -178,4 +177,8 @@ const pHash = {
   }
 }
 
-window.pHash = pHash
+export default pHash
+
+if(window !== 'undefined') {
+  window.pHash = pHash
+}

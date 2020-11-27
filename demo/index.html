@@ -5,20 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pHash</title>
     <style>
-      #image {
-        margin: 5px 0;
-      }
-
       #output {
-        display: flex;
+        margin: 5px 0;
       }
     </style>
   </head>
   <body>
-    <input type="file" multiple="" id="input" /><br />
+    <input type="file" multiple="" accept="image/*" id="input" /><br />
     <div id="output"></div>
 
     <script src="/dist/phash.js"></script>
-    <script type="module" src="/demo/index.js"></script>
+    <script src="/demo/main.js"></script>
   </body>
 </html>
