@@ -1,4 +1,4 @@
-const Magick = require('wasm-imagemagick')
+import * as Magick from 'wasm-imagemagick'
 
 class Hash {
   constructor(bits) {
@@ -39,6 +39,10 @@ const pHash = {
       }
     }
 
+    return this._calculateHash(data)
+  },
+
+  _calculateHash(data) {
     let matrix = []
     let row = []
     let rows = []

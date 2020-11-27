@@ -71,9 +71,83 @@ function _interopRequireDefault(obj) {
 
 module.exports = _interopRequireDefault;
 },{}],5:[function(require,module,exports){
+var _typeof = require("@babel/runtime/helpers/typeof");
+
+function _getRequireWildcardCache() {
+  if (typeof WeakMap !== "function") return null;
+  var cache = new WeakMap();
+
+  _getRequireWildcardCache = function _getRequireWildcardCache() {
+    return cache;
+  };
+
+  return cache;
+}
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  }
+
+  if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") {
+    return {
+      "default": obj
+    };
+  }
+
+  var cache = _getRequireWildcardCache();
+
+  if (cache && cache.has(obj)) {
+    return cache.get(obj);
+  }
+
+  var newObj = {};
+  var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+
+      if (desc && (desc.get || desc.set)) {
+        Object.defineProperty(newObj, key, desc);
+      } else {
+        newObj[key] = obj[key];
+      }
+    }
+  }
+
+  newObj["default"] = obj;
+
+  if (cache) {
+    cache.set(obj, newObj);
+  }
+
+  return newObj;
+}
+
+module.exports = _interopRequireWildcard;
+},{"@babel/runtime/helpers/typeof":6}],6:[function(require,module,exports){
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    module.exports = _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+  } else {
+    module.exports = _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+module.exports = _typeof;
+},{}],7:[function(require,module,exports){
 module.exports = require("regenerator-runtime");
 
-},{"regenerator-runtime":8}],6:[function(require,module,exports){
+},{"regenerator-runtime":10}],8:[function(require,module,exports){
 (function(root, factory) {
     'use strict';
     // Universal Module Definition (UMD) to support AMD, CommonJS/Node.js, Rhino, and browsers.
@@ -277,7 +351,7 @@ module.exports = require("regenerator-runtime");
     };
 }));
 
-},{"stackframe":10}],7:[function(require,module,exports){
+},{"stackframe":12}],9:[function(require,module,exports){
 'use strict';
 
 const pMap = (iterable, mapper, options) => new Promise((resolve, reject) => {
@@ -351,7 +425,7 @@ module.exports = pMap;
 // TODO: Remove this for the next major release
 module.exports.default = pMap;
 
-},{}],8:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -1101,7 +1175,7 @@ try {
   Function("r", "regeneratorRuntime = r")(runtime);
 }
 
-},{}],9:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 (function(root, factory) {
     'use strict';
     // Universal Module Definition (UMD) to support AMD, CommonJS/Node.js, Rhino, and browsers.
@@ -1148,7 +1222,7 @@ try {
     };
 }));
 
-},{"stackframe":10}],10:[function(require,module,exports){
+},{"stackframe":12}],12:[function(require,module,exports){
 (function(root, factory) {
     'use strict';
     // Universal Module Definition (UMD) to support AMD, CommonJS/Node.js, Rhino, and browsers.
@@ -1293,7 +1367,7 @@ try {
     return StackFrame;
 }));
 
-},{}],11:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -1399,7 +1473,7 @@ ArraySet.prototype.toArray = function ArraySet_toArray() {
 
 exports.ArraySet = ArraySet;
 
-},{"./util":17}],12:[function(require,module,exports){
+},{"./util":19}],14:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -1541,7 +1615,7 @@ exports.decode = function base64VLQ_decode(aStr, aIndex, aOutParam) {
   aOutParam.rest = aIndex;
 };
 
-},{"./base64":13}],13:[function(require,module,exports){
+},{"./base64":15}],15:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -1610,7 +1684,7 @@ exports.decode = function (charCode) {
   return -1;
 };
 
-},{}],14:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -1723,7 +1797,7 @@ exports.search = function search(aNeedle, aHaystack, aCompare, aBias) {
   return index;
 };
 
-},{}],15:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -1839,7 +1913,7 @@ exports.quickSort = function (ary, comparator) {
   doQuickSort(ary, comparator, 0, ary.length - 1);
 };
 
-},{}],16:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -2923,7 +2997,7 @@ IndexedSourceMapConsumer.prototype._parseMappings =
 
 exports.IndexedSourceMapConsumer = IndexedSourceMapConsumer;
 
-},{"./array-set":11,"./base64-vlq":12,"./binary-search":14,"./quick-sort":15,"./util":17}],17:[function(require,module,exports){
+},{"./array-set":13,"./base64-vlq":14,"./binary-search":16,"./quick-sort":17,"./util":19}],19:[function(require,module,exports){
 /* -*- Mode: js; js-indent-level: 2; -*- */
 /*
  * Copyright 2011 Mozilla Foundation and contributors
@@ -3342,7 +3416,7 @@ function compareByGeneratedPositionsInflated(mappingA, mappingB) {
 }
 exports.compareByGeneratedPositionsInflated = compareByGeneratedPositionsInflated;
 
-},{}],18:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 (function(root, factory) {
     'use strict';
     // Universal Module Definition (UMD) to support AMD, CommonJS/Node.js, Rhino, and browsers.
@@ -3686,7 +3760,7 @@ exports.compareByGeneratedPositionsInflated = compareByGeneratedPositionsInflate
     };
 }));
 
-},{"source-map/lib/source-map-consumer":16,"stackframe":10}],19:[function(require,module,exports){
+},{"source-map/lib/source-map-consumer":18,"stackframe":12}],21:[function(require,module,exports){
 (function(root, factory) {
     'use strict';
     // Universal Module Definition (UMD) to support AMD, CommonJS/Node.js, Rhino, and browsers.
@@ -3915,7 +3989,7 @@ exports.compareByGeneratedPositionsInflated = compareByGeneratedPositionsInflate
     };
 }));
 
-},{"error-stack-parser":6,"stack-generator":9,"stacktrace-gps":18}],20:[function(require,module,exports){
+},{"error-stack-parser":8,"stack-generator":11,"stacktrace-gps":20}],22:[function(require,module,exports){
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -4053,7 +4127,7 @@ async function execute(configOrCommand) {
 }
 exports.execute = execute;
 
-},{".":23,"./util":99,"./util/misc":100,"p-map":7}],21:[function(require,module,exports){
+},{".":25,"./util":101,"./util/misc":102,"p-map":9}],23:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const _1 = require(".");
@@ -4101,7 +4175,7 @@ function newExecutionContext(inheritFrom) {
 }
 exports.newExecutionContext = newExecutionContext;
 
-},{".":23,"./execute":20}],22:[function(require,module,exports){
+},{".":25,"./execute":22}],24:[function(require,module,exports){
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -4152,7 +4226,7 @@ class ImageHomeImpl {
 function createImageHome() { return new ImageHomeImpl(); }
 exports.createImageHome = createImageHome;
 
-},{".":23,"./util/misc":100,"p-map":7}],23:[function(require,module,exports){
+},{".":25,"./util/misc":102,"p-map":9}],25:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
@@ -4165,7 +4239,7 @@ __export(require("./magickApi"));
 __export(require("./util"));
 __export(require("./list"));
 
-},{"./execute":20,"./executionContext":21,"./imageHome":22,"./list":90,"./magickApi":91,"./util":99}],24:[function(require,module,exports){
+},{"./execute":22,"./executionContext":23,"./imageHome":24,"./list":92,"./magickApi":93,"./util":101}],26:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -4179,7 +4253,7 @@ var IMAlign;
     IMAlign["Start"] = "Start";
 })(IMAlign = exports.IMAlign || (exports.IMAlign = {}));
 
-},{}],25:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -4202,7 +4276,7 @@ var IMAlpha;
     IMAlpha["Transparent"] = "Transparent";
 })(IMAlpha = exports.IMAlpha || (exports.IMAlpha = {}));
 
-},{}],26:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -4213,7 +4287,7 @@ var IMAutoThreshold;
     IMAutoThreshold["Triangle"] = "Triangle";
 })(IMAutoThreshold = exports.IMAutoThreshold || (exports.IMAutoThreshold = {}));
 
-},{}],27:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -4225,7 +4299,7 @@ var IMBoolean;
     IMBoolean["1_"] = "1";
 })(IMBoolean = exports.IMBoolean || (exports.IMBoolean = {}));
 
-},{}],28:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -4238,7 +4312,7 @@ var IMCache;
     IMCache["Ping"] = "Ping";
 })(IMCache = exports.IMCache || (exports.IMCache = {}));
 
-},{}],29:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -4307,7 +4381,7 @@ var IMChannel;
     IMChannel["31_"] = "31";
 })(IMChannel = exports.IMChannel || (exports.IMChannel = {}));
 
-},{}],30:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -4317,7 +4391,7 @@ var IMClass;
     IMClass["PseudoClass"] = "PseudoClass";
 })(IMClass = exports.IMClass || (exports.IMClass = {}));
 
-},{}],31:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -4328,7 +4402,7 @@ var IMClipPath;
     IMClipPath["UserSpaceOnUse"] = "UserSpaceOnUse";
 })(IMClipPath = exports.IMClipPath || (exports.IMClipPath = {}));
 
-},{}],32:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -4370,7 +4444,7 @@ var IMColorspace;
     IMColorspace["YUV"] = "YUV";
 })(IMColorspace = exports.IMColorspace || (exports.IMColorspace = {}));
 
-},{}],33:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -4822,7 +4896,7 @@ var IMCommand;
     IMCommand["-write-mask"] = "-write-mask";
 })(IMCommand = exports.IMCommand || (exports.IMCommand = {}));
 
-},{}],34:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -4837,7 +4911,7 @@ var IMComplex;
     IMComplex["Subtract"] = "Subtract";
 })(IMComplex = exports.IMComplex || (exports.IMComplex = {}));
 
-},{}],35:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -4851,7 +4925,7 @@ var IMCompliance;
     IMCompliance["XPM"] = "XPM";
 })(IMCompliance = exports.IMCompliance || (exports.IMCompliance = {}));
 
-},{}],36:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -4928,7 +5002,7 @@ var IMCompose;
     IMCompose["Xor"] = "Xor";
 })(IMCompose = exports.IMCompose || (exports.IMCompose = {}));
 
-},{}],37:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -4961,7 +5035,7 @@ var IMCompress;
     IMCompress["Zstd"] = "Zstd";
 })(IMCompress = exports.IMCompress || (exports.IMCompress = {}));
 
-},{}],38:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -4973,7 +5047,7 @@ var IMDataType;
     IMDataType["String"] = "String";
 })(IMDataType = exports.IMDataType || (exports.IMDataType = {}));
 
-},{}],39:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5003,7 +5077,7 @@ var IMDebug;
     IMDebug["X11"] = "X11";
 })(IMDebug = exports.IMDebug || (exports.IMDebug = {}));
 
-},{}],40:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5015,7 +5089,7 @@ var IMDecoration;
     IMDecoration["Underline"] = "Underline";
 })(IMDecoration = exports.IMDecoration || (exports.IMDecoration = {}));
 
-},{}],41:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5025,7 +5099,7 @@ var IMDirection;
     IMDirection["left-to-right"] = "left-to-right";
 })(IMDirection = exports.IMDirection || (exports.IMDirection = {}));
 
-},{}],42:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5041,7 +5115,7 @@ var IMDispose;
     IMDispose["3_"] = "3";
 })(IMDispose = exports.IMDispose || (exports.IMDispose = {}));
 
-},{}],43:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5065,7 +5139,7 @@ var IMDistort;
     IMDistort["Resize"] = "Resize";
 })(IMDistort = exports.IMDistort || (exports.IMDistort = {}));
 
-},{}],44:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5076,7 +5150,7 @@ var IMDither;
     IMDither["Riemersma"] = "Riemersma";
 })(IMDither = exports.IMDither || (exports.IMDither = {}));
 
-},{}],45:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5086,7 +5160,7 @@ var IMEndian;
     IMEndian["MSB"] = "MSB";
 })(IMEndian = exports.IMEndian || (exports.IMEndian = {}));
 
-},{}],46:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5130,7 +5204,7 @@ var IMEvaluate;
     IMEvaluate["Xor"] = "Xor";
 })(IMEvaluate = exports.IMEvaluate || (exports.IMEvaluate = {}));
 
-},{}],47:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5140,7 +5214,7 @@ var IMFillRule;
     IMFillRule["NonZero"] = "NonZero";
 })(IMFillRule = exports.IMFillRule || (exports.IMFillRule = {}));
 
-},{}],48:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5179,7 +5253,7 @@ var IMFilter;
     IMFilter["Welch"] = "Welch";
 })(IMFilter = exports.IMFilter || (exports.IMFilter = {}));
 
-},{}],49:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5191,7 +5265,7 @@ var IMFunction;
     IMFunction["ArcTan"] = "ArcTan";
 })(IMFunction = exports.IMFunction || (exports.IMFunction = {}));
 
-},{}],50:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5201,7 +5275,7 @@ var IMGradient;
     IMGradient["Radial"] = "Radial";
 })(IMGradient = exports.IMGradient || (exports.IMGradient = {}));
 
-},{}],51:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5220,7 +5294,7 @@ var IMGravity;
     IMGravity["West"] = "West";
 })(IMGravity = exports.IMGravity || (exports.IMGravity = {}));
 
-},{}],52:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5238,7 +5312,7 @@ var IMIntensity;
     IMIntensity["RMS"] = "RMS";
 })(IMIntensity = exports.IMIntensity || (exports.IMIntensity = {}));
 
-},{}],53:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5250,7 +5324,7 @@ var IMIntent;
     IMIntent["Saturation"] = "Saturation";
 })(IMIntent = exports.IMIntent || (exports.IMIntent = {}));
 
-},{}],54:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5265,7 +5339,7 @@ var IMInterlace;
     IMInterlace["PNG"] = "PNG";
 })(IMInterlace = exports.IMInterlace || (exports.IMInterlace = {}));
 
-},{}],55:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5285,7 +5359,7 @@ var IMInterpolate;
     IMInterpolate["Spline"] = "Spline";
 })(IMInterpolate = exports.IMInterpolate || (exports.IMInterpolate = {}));
 
-},{}],56:[function(require,module,exports){
+},{}],58:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5329,7 +5403,7 @@ var IMKernel;
     IMKernel["Euclidean"] = "Euclidean";
 })(IMKernel = exports.IMKernel || (exports.IMKernel = {}));
 
-},{}],57:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5353,7 +5427,7 @@ var IMLayers;
     IMLayers["TrimBounds"] = "TrimBounds";
 })(IMLayers = exports.IMLayers || (exports.IMLayers = {}));
 
-},{}],58:[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5364,7 +5438,7 @@ var IMLineCap;
     IMLineCap["Square"] = "Square";
 })(IMLineCap = exports.IMLineCap || (exports.IMLineCap = {}));
 
-},{}],59:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5375,7 +5449,7 @@ var IMLineJoin;
     IMLineJoin["Round"] = "Round";
 })(IMLineJoin = exports.IMLineJoin || (exports.IMLineJoin = {}));
 
-},{}],60:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5462,7 +5536,7 @@ var IMList;
     IMList["Weight"] = "Weight";
 })(IMList = exports.IMList || (exports.IMList = {}));
 
-},{}],61:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5476,7 +5550,7 @@ var IMLog;
     IMLog["Magick-%g.log            0         0   %t %r %u %v %d %c[%p]: %m/%f/%l/%d\n  %e"] = "Magick-%g.log            0         0   %t %r %u %v %d %c[%p]: %m/%f/%l/%d\n  %e";
 })(IMLog = exports.IMLog || (exports.IMLog = {}));
 
-},{}],62:[function(require,module,exports){
+},{}],64:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5506,7 +5580,7 @@ var IMLogEvent;
     IMLogEvent["X11"] = "X11";
 })(IMLogEvent = exports.IMLogEvent || (exports.IMLogEvent = {}));
 
-},{}],63:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5519,7 +5593,7 @@ var IMMethod;
     IMMethod["Reset"] = "Reset";
 })(IMMethod = exports.IMMethod || (exports.IMMethod = {}));
 
-},{}],64:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5539,7 +5613,7 @@ var IMMetric;
     IMMetric["SSIM"] = "SSIM";
 })(IMMetric = exports.IMMetric || (exports.IMMetric = {}));
 
-},{}],65:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5550,7 +5624,7 @@ var IMMode;
     IMMode["Unframe"] = "Unframe";
 })(IMMode = exports.IMMode || (exports.IMMode = {}));
 
-},{}],66:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5685,7 +5759,7 @@ var IMModule;
     IMModule["analyze"] = "analyze";
 })(IMModule = exports.IMModule || (exports.IMModule = {}));
 
-},{}],67:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5720,7 +5794,7 @@ var IMMorphology;
     IMMorphology["IterativeDistance"] = "IterativeDistance";
 })(IMMorphology = exports.IMMorphology || (exports.IMMorphology = {}));
 
-},{}],68:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5735,7 +5809,7 @@ var IMNoise;
     IMNoise["Uniform"] = "Uniform";
 })(IMNoise = exports.IMNoise || (exports.IMNoise = {}));
 
-},{}],69:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5751,7 +5825,7 @@ var IMOrientation;
     IMOrientation["LeftBottom"] = "LeftBottom";
 })(IMOrientation = exports.IMOrientation || (exports.IMOrientation = {}));
 
-},{}],70:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5789,7 +5863,7 @@ var IMPixelChannel;
     IMPixelChannel["Yellow"] = "Yellow";
 })(IMPixelChannel = exports.IMPixelChannel || (exports.IMPixelChannel = {}));
 
-},{}],71:[function(require,module,exports){
+},{}],73:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5807,7 +5881,7 @@ var IMPixelIntensity;
     IMPixelIntensity["RMS"] = "RMS";
 })(IMPixelIntensity = exports.IMPixelIntensity || (exports.IMPixelIntensity = {}));
 
-},{}],72:[function(require,module,exports){
+},{}],74:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5819,7 +5893,7 @@ var IMPixelMask;
     IMPixelMask["Write"] = "Write";
 })(IMPixelMask = exports.IMPixelMask || (exports.IMPixelMask = {}));
 
-},{}],73:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5830,7 +5904,7 @@ var IMPixelTrait;
     IMPixelTrait["Update"] = "Update";
 })(IMPixelTrait = exports.IMPixelTrait || (exports.IMPixelTrait = {}));
 
-},{}],74:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5846,7 +5920,7 @@ var IMPolicyDomain;
     IMPolicyDomain["System"] = "System";
 })(IMPolicyDomain = exports.IMPolicyDomain || (exports.IMPolicyDomain = {}));
 
-},{}],75:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5859,7 +5933,7 @@ var IMPolicyRights;
     IMPolicyRights["Write"] = "Write";
 })(IMPolicyRights = exports.IMPolicyRights || (exports.IMPolicyRights = {}));
 
-},{}],76:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5896,7 +5970,7 @@ var IMPreview;
     IMPreview["Wave"] = "Wave";
 })(IMPreview = exports.IMPreview || (exports.IMPreview = {}));
 
-},{}],77:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5920,7 +5994,7 @@ var IMPrimitive;
     IMPrimitive["Text"] = "Text";
 })(IMPrimitive = exports.IMPrimitive || (exports.IMPrimitive = {}));
 
-},{}],78:[function(require,module,exports){
+},{}],80:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5931,7 +6005,7 @@ var IMQuantumFormat;
     IMQuantumFormat["Unsigned"] = "Unsigned";
 })(IMQuantumFormat = exports.IMQuantumFormat || (exports.IMQuantumFormat = {}));
 
-},{}],79:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5945,7 +6019,7 @@ var IMSparseColor;
     IMSparseColor["Manhattan"] = "Manhattan";
 })(IMSparseColor = exports.IMSparseColor || (exports.IMSparseColor = {}));
 
-},{}],80:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5963,7 +6037,7 @@ var IMStatistic;
     IMStatistic["StandardDeviation"] = "StandardDeviation";
 })(IMStatistic = exports.IMStatistic || (exports.IMStatistic = {}));
 
-},{}],81:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5978,7 +6052,7 @@ var IMStorage;
     IMStorage["Short"] = "Short";
 })(IMStorage = exports.IMStorage || (exports.IMStorage = {}));
 
-},{}],82:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -5996,7 +6070,7 @@ var IMStretch;
     IMStretch["UltraExpanded"] = "UltraExpanded";
 })(IMStretch = exports.IMStretch || (exports.IMStretch = {}));
 
-},{}],83:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -6009,7 +6083,7 @@ var IMStyle;
     IMStyle["Oblique"] = "Oblique";
 })(IMStyle = exports.IMStyle || (exports.IMStyle = {}));
 
-},{}],84:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -6028,7 +6102,7 @@ var IMTool;
     IMTool["stream"] = "stream";
 })(IMTool = exports.IMTool || (exports.IMTool = {}));
 
-},{}],85:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -6052,7 +6126,7 @@ var IMType;
     IMType["TrueColor"] = "TrueColor";
 })(IMType = exports.IMType || (exports.IMType = {}));
 
-},{}],86:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -6065,7 +6139,7 @@ var IMUnits;
     IMUnits["3_"] = "3";
 })(IMUnits = exports.IMUnits || (exports.IMUnits = {}));
 
-},{}],87:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -6086,7 +6160,7 @@ var IMValidate;
     IMValidate["None"] = "None";
 })(IMValidate = exports.IMValidate || (exports.IMValidate = {}));
 
-},{}],88:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -6110,7 +6184,7 @@ var IMVirtualPixel;
     IMVirtualPixel["White"] = "White";
 })(IMVirtualPixel = exports.IMVirtualPixel || (exports.IMVirtualPixel = {}));
 
-},{}],89:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* auto-generated file using command `npx ts-node scripts/generateImEnums.ts` */
@@ -6131,7 +6205,7 @@ var IMWeight;
     IMWeight["Black"] = "Black";
 })(IMWeight = exports.IMWeight || (exports.IMWeight = {}));
 
-},{}],90:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
@@ -6204,7 +6278,7 @@ __export(require("./IMValidate"));
 __export(require("./IMVirtualPixel"));
 __export(require("./IMWeight"));
 
-},{"./IMAlign":24,"./IMAlpha":25,"./IMAutoThreshold":26,"./IMBoolean":27,"./IMCache":28,"./IMChannel":29,"./IMClass":30,"./IMClipPath":31,"./IMColorspace":32,"./IMCommand":33,"./IMComplex":34,"./IMCompliance":35,"./IMCompose":36,"./IMCompress":37,"./IMDataType":38,"./IMDebug":39,"./IMDecoration":40,"./IMDirection":41,"./IMDispose":42,"./IMDistort":43,"./IMDither":44,"./IMEndian":45,"./IMEvaluate":46,"./IMFillRule":47,"./IMFilter":48,"./IMFunction":49,"./IMGradient":50,"./IMGravity":51,"./IMIntensity":52,"./IMIntent":53,"./IMInterlace":54,"./IMInterpolate":55,"./IMKernel":56,"./IMLayers":57,"./IMLineCap":58,"./IMLineJoin":59,"./IMList":60,"./IMLog":61,"./IMLogEvent":62,"./IMMethod":63,"./IMMetric":64,"./IMMode":65,"./IMModule":66,"./IMMorphology":67,"./IMNoise":68,"./IMOrientation":69,"./IMPixelChannel":70,"./IMPixelIntensity":71,"./IMPixelMask":72,"./IMPixelTrait":73,"./IMPolicyDomain":74,"./IMPolicyRights":75,"./IMPreview":76,"./IMPrimitive":77,"./IMQuantumFormat":78,"./IMSparseColor":79,"./IMStatistic":80,"./IMStorage":81,"./IMStretch":82,"./IMStyle":83,"./IMTool":84,"./IMType":85,"./IMUnits":86,"./IMValidate":87,"./IMVirtualPixel":88,"./IMWeight":89}],91:[function(require,module,exports){
+},{"./IMAlign":26,"./IMAlpha":27,"./IMAutoThreshold":28,"./IMBoolean":29,"./IMCache":30,"./IMChannel":31,"./IMClass":32,"./IMClipPath":33,"./IMColorspace":34,"./IMCommand":35,"./IMComplex":36,"./IMCompliance":37,"./IMCompose":38,"./IMCompress":39,"./IMDataType":40,"./IMDebug":41,"./IMDecoration":42,"./IMDirection":43,"./IMDispose":44,"./IMDistort":45,"./IMDither":46,"./IMEndian":47,"./IMEvaluate":48,"./IMFillRule":49,"./IMFilter":50,"./IMFunction":51,"./IMGradient":52,"./IMGravity":53,"./IMIntensity":54,"./IMIntent":55,"./IMInterlace":56,"./IMInterpolate":57,"./IMKernel":58,"./IMLayers":59,"./IMLineCap":60,"./IMLineJoin":61,"./IMList":62,"./IMLog":63,"./IMLogEvent":64,"./IMMethod":65,"./IMMetric":66,"./IMMode":67,"./IMModule":68,"./IMMorphology":69,"./IMNoise":70,"./IMOrientation":71,"./IMPixelChannel":72,"./IMPixelIntensity":73,"./IMPixelMask":74,"./IMPixelTrait":75,"./IMPolicyDomain":76,"./IMPolicyRights":77,"./IMPreview":78,"./IMPrimitive":79,"./IMQuantumFormat":80,"./IMSparseColor":81,"./IMStatistic":82,"./IMStorage":83,"./IMStretch":84,"./IMStyle":85,"./IMTool":86,"./IMType":87,"./IMUnits":88,"./IMValidate":89,"./IMVirtualPixel":90,"./IMWeight":91}],93:[function(require,module,exports){
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -6354,7 +6428,7 @@ magickWorker.onmessage = e => {
     promise.resolve(result);
 };
 
-},{"stacktrace-js":19}],92:[function(require,module,exports){
+},{"stacktrace-js":21}],94:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const misc_1 = require("./misc");
@@ -6457,7 +6531,7 @@ function asCommand(c) {
 }
 exports.asCommand = asCommand;
 
-},{"./misc":100}],93:[function(require,module,exports){
+},{"./misc":102}],95:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const execute_1 = require("../execute");
@@ -6581,7 +6655,7 @@ function getFileNameExtension(filePathOrUrl) {
 }
 exports.getFileNameExtension = getFileNameExtension;
 
-},{"../execute":20}],94:[function(require,module,exports){
+},{"../execute":22}],96:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const __1 = require("..");
@@ -6644,7 +6718,7 @@ async function inputFileToUint8Array(el) {
     }));
 }
 
-},{"..":23}],95:[function(require,module,exports){
+},{"..":25}],97:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const __1 = require("../");
@@ -6655,7 +6729,7 @@ async function getPixelColor(img, x, y) {
 }
 exports.getPixelColor = getPixelColor;
 
-},{"../":23,"./file":93}],96:[function(require,module,exports){
+},{"../":25,"./file":95}],98:[function(require,module,exports){
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -6689,7 +6763,7 @@ async function getBuiltInImage(name) {
 }
 exports.getBuiltInImage = getBuiltInImage;
 
-},{"..":23,"p-map":7}],97:[function(require,module,exports){
+},{"..":25,"p-map":9}],99:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const __1 = require("..");
@@ -6727,7 +6801,7 @@ async function compareNumber(img1, img2) {
 }
 exports.compareNumber = compareNumber;
 
-},{"..":23}],98:[function(require,module,exports){
+},{"..":25}],100:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const __1 = require("..");
@@ -6757,7 +6831,7 @@ async function extractInfo(img) {
 }
 exports.extractInfo = extractInfo;
 
-},{"..":23}],99:[function(require,module,exports){
+},{"..":25}],101:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
@@ -6772,7 +6846,7 @@ __export(require("./imageCompare"));
 __export(require("./imageExtractInfo"));
 __export(require("./support"));
 
-},{"./cli":92,"./file":93,"./html":94,"./image":95,"./imageBuiltIn":96,"./imageCompare":97,"./imageExtractInfo":98,"./support":101}],100:[function(require,module,exports){
+},{"./cli":94,"./file":95,"./html":96,"./image":97,"./imageBuiltIn":98,"./imageCompare":99,"./imageExtractInfo":100,"./support":103}],102:[function(require,module,exports){
 "use strict";
 // internal misc utilities
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -6788,7 +6862,7 @@ exports.flat = flat;
 //   return s.replace(/^ +/, '').replace(/ +$/, '')
 // }
 
-},{}],101:[function(require,module,exports){
+},{}],103:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const __1 = require("../");
@@ -6826,8 +6900,10 @@ exports.knownSupportedReadWriteImageFormats = [
     'txt',
 ];
 
-},{"../":23}],102:[function(require,module,exports){
+},{"../":25}],104:[function(require,module,exports){
 "use strict";
+
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
@@ -6844,13 +6920,13 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
+var Magick = _interopRequireWildcard(require("wasm-imagemagick"));
+
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-var Magick = require('wasm-imagemagick');
 
 var Hash = /*#__PURE__*/function () {
   function Hash(bits) {
@@ -6882,7 +6958,7 @@ var pHash = {
     var _this = this;
 
     return (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee() {
-      var content, files, command, output, buffer, info, data, lines, _iterator, _step, line, parts, key, value, matrix, row, rows, col, size, y, x, color, _x, _y, pixels, _y2, _x2, bits, compare, _i, _pixels, pixel;
+      var content, files, command, output, buffer, info, data, lines, _iterator, _step, line, parts, key, value;
 
       return _regenerator["default"].wrap(function _callee$(_context) {
         while (1) {
@@ -6929,56 +7005,60 @@ var pHash = {
                 _iterator.f();
               }
 
-              matrix = [];
-              row = [];
-              rows = [];
-              col = [];
-              size = 32;
+              return _context.abrupt("return", _this._calculateHash(data));
 
-              for (y = 0; y < size; y++) {
-                for (x = 0; x < size; x++) {
-                  color = data["".concat(x, ",").concat(y)];
-                  row[x] = parseInt(Math.floor(color.r * 0.299 + color.g * 0.587 + color.b * 0.114));
-                }
-
-                rows[y] = _this._calculateDCT(row);
-              }
-
-              for (_x = 0; _x < size; _x++) {
-                for (_y = 0; _y < size; _y++) {
-                  col[_y] = rows[_y][_x];
-                }
-
-                matrix[_x] = _this._calculateDCT(col);
-              } // Extract the top 8x8 pixels.
-
-
-              pixels = [];
-
-              for (_y2 = 0; _y2 < 8; _y2++) {
-                for (_x2 = 0; _x2 < 8; _x2++) {
-                  pixels.push(matrix[_y2][_x2]);
-                }
-              } // Calculate hash.
-
-
-              bits = [];
-              compare = _this._average(pixels);
-
-              for (_i = 0, _pixels = pixels; _i < _pixels.length; _i++) {
-                pixel = _pixels[_i];
-                bits.push(pixel > compare ? 1 : 0);
-              }
-
-              return _context.abrupt("return", new Hash(bits));
-
-            case 28:
+            case 16:
             case "end":
               return _context.stop();
           }
         }
       }, _callee);
     }))();
+  },
+  _calculateHash: function _calculateHash(data) {
+    var matrix = [];
+    var row = [];
+    var rows = [];
+    var col = [];
+    var size = 32;
+
+    for (var y = 0; y < size; y++) {
+      for (var x = 0; x < size; x++) {
+        var color = data["".concat(x, ",").concat(y)];
+        row[x] = parseInt(Math.floor(color.r * 0.299 + color.g * 0.587 + color.b * 0.114));
+      }
+
+      rows[y] = this._calculateDCT(row);
+    }
+
+    for (var _x = 0; _x < size; _x++) {
+      for (var _y = 0; _y < size; _y++) {
+        col[_y] = rows[_y][_x];
+      }
+
+      matrix[_x] = this._calculateDCT(col);
+    } // Extract the top 8x8 pixels.
+
+
+    var pixels = [];
+
+    for (var _y2 = 0; _y2 < 8; _y2++) {
+      for (var _x2 = 0; _x2 < 8; _x2++) {
+        pixels.push(matrix[_y2][_x2]);
+      }
+    } // Calculate hash.
+
+
+    var bits = [];
+
+    var compare = this._average(pixels);
+
+    for (var _i = 0, _pixels = pixels; _i < _pixels.length; _i++) {
+      var pixel = _pixels[_i];
+      bits.push(pixel > compare ? 1 : 0);
+    }
+
+    return new Hash(bits);
   },
   compare: function compare(file1, file2) {
     var _this2 = this;
@@ -7109,4 +7189,4 @@ if (window !== 'undefined') {
   window.pHash = pHash;
 }
 
-},{"@babel/runtime/helpers/asyncToGenerator":1,"@babel/runtime/helpers/classCallCheck":2,"@babel/runtime/helpers/createClass":3,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/regenerator":5,"wasm-imagemagick":23}]},{},[102]);
+},{"@babel/runtime/helpers/asyncToGenerator":1,"@babel/runtime/helpers/classCallCheck":2,"@babel/runtime/helpers/createClass":3,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/helpers/interopRequireWildcard":5,"@babel/runtime/regenerator":7,"wasm-imagemagick":25}]},{},[104]);

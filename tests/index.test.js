@@ -1,29 +1,20 @@
-const { loadImage } = require('canvas')
-const pHash = require('../dist/phash.js')
+import Worker from './workerMock.js'
+import pHash from '../src/index.js'
+import data from './data.json'
 
-describe.skip('index', () => {
-  it('forest-copyright.jpg', async () => {
-    const image = await loadImage('./tests/images/forest/forest-copyright.jpg')
-    expect(pHash(image)).toBe('bdd6520b2b2f4000')
+describe('index', () => {
+  it('can calculate hash from data object', async () => {
+    const hash = pHash._calculateHash(data)
+    expect(hash.value).toBe('1011010111010110010100100000101100101011001011110011110111111111')
   })
 
-  it('forest-cropped.jpg', async () => {
-    const image = await loadImage('./tests/images/forest/forest-cropped.jpg')
-    expect(pHash(image)).toBe('bdd6520b2b2f4000')
+  it('can return hash as hex value', async () => {
+    const hash = pHash._calculateHash(data)
+    expect(hash.toHex()).toBe('b5d6520b2b2f4000')
   })
 
-  it('forest-high.jpg', async () => {
-    const image = await loadImage('./tests/images/forest/forest-high.jpg')
-    expect(pHash(image)).toBe('b5d6520b0b2f4000')
-  })
-
-  it('forest-low.jpg', async () => {
-    const image = await loadImage('./tests/images/forest/forest-low.jpg')
-    expect(pHash(image)).toBe('b5d6520b0b2f4000')
-  })
-
-  it('forest-thumb.jpg', async () => {
-    const image = await loadImage('./tests/images/forest/forest-thumb.jpg')
-    expect(pHash(image)).toBe('b5d6520b2b2f4000')
+  it('can return hash as integer', async () => {
+    const hash = pHash._calculateHash(data)
+    expect(hash.toInt()).toBe(13102750373803672000)
   })
 })
