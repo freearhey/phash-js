@@ -55,7 +55,7 @@ pHash.compare(image1, image2).then(distance => {
 
 ## Why?
 
-If you try to generate an image hash using the Canvas API will notice that it changes depending on the browser and environment. This happens for several reasons. At the image format level – web browsers use different image processing engines, image export options, compression level, the final images may get different checksum even if they are pixel-identical. At the system level – operating systems have different fonts, they use different algorithms and settings for anti-aliasing and sub-pixel rendering. On this basis, for example, the technique [Canvas Fingerprinting](https://browserleaks.com/canvas) works.
+If you try to generate an image hash using the HTML Canvas will notice that it changes depending on the browser and environment. This happens for several reasons. At the image format level – web browsers use different image processing engines, image export options, compression level, the final images may get different checksum even if they are pixel-identical. At the system level – operating systems have different fonts, they use different algorithms and settings for anti-aliasing and sub-pixel rendering. On this basis, for example, the technique [Canvas Fingerprinting](https://browserleaks.com/canvas) works.
 
 ## Caveats
 
