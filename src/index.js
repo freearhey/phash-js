@@ -20,16 +20,41 @@ class Hash {
 
 const pHash = {
   async hash(file) {
-    const content = await this._readAsArrayBuffer(file)
+    let image = await this._readFileAsArrayBuffer(file)
+    image = await this._resizeImage(image)
+    const data = this._convertToObject(image)
+
+    return this._calculateHash(data)
+  },
+
+  _readFileAsArrayBuffer(file) {
+    return new Promise(resolve => {
+      const reader = new FileReader()
+      reader.onload = () => {
+        if(reader.result) {
+          resolve(reader.result)
+        }
+      }
+      reader.readAsArrayBuffer(file)
+    })
+  },
+
+  async _resizeImage(content) {
     const files = [{ name: 'input.jpg', content }]
     const command = ['convert', 'input.jpg', '-resize', '32x32!', 'output.txt']
-    let output = await Magick.Call(files, command)
-    let buffer = output[0].buffer
-    let info = String.fromCharCode.apply(null, buffer)
+    const output = await Magick.Call(files, command)
+
+    return output[0].buffer
+  },
+
+  _convertToObject(buffer) {
+    if(!Array.isArray(buffer)) throw new Error('Buffer must be type of Array')
+
+    const string = String.fromCharCode.apply(null, buffer)
+    let lines = string.split('\n')
+    lines.shift()
 
     let data = {}
-    let lines = info.split('\n')
-    lines.shift()
     for (let line of lines) {
       const parts = line.split(' ').filter(v => v)
       if (parts[0] && parts[2]) {
@@ -39,7 +64,7 @@ const pHash = {
       }
     }
 
-    return this._calculateHash(data)
+    return data
   },
 
   _calculateHash(data) {
@@ -120,21 +145,6 @@ const pHash = {
       }
     }
     return retArr
-  },
-
-  _readAsArrayBuffer(file) {
-    return new Promise(resolve => {
-      if (!window.FileReader)
-        throw new Error('FileReader API is not available in this environment.')
-
-      const reader = new FileReader()
-      reader.onload = event => {
-        const arrayBuffer = event.target.result
-        const sourceBytes = new Uint8Array(arrayBuffer)
-        resolve(sourceBytes)
-      }
-      reader.readAsArrayBuffer(file)
-    })
   },
 
   /**
