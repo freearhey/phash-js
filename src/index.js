@@ -48,7 +48,7 @@ const pHash = {
   },
 
   _convertToObject(buffer) {
-    if(!Array.isArray(buffer)) throw new Error('Buffer must be type of Array')
+    if(buffer.constructor !== Uint8Array) throw new Error('Buffer must be type of Uint8Array')
 
     const string = String.fromCharCode.apply(null, buffer)
     let lines = string.split('\n')

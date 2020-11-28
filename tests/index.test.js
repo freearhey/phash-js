@@ -27,7 +27,7 @@ describe('pHash', () => {
 
   it('shoud return valid hash', async () => {
     Magick.Call.mockImplementation(() => {
-      return [{ buffer }]
+      return [{ buffer: new Uint8Array(buffer) }]
     })
 
     const file = new File([new ArrayBuffer(1)], 'image.jpg')

@@ -7025,8 +7025,8 @@ var pHash = {
     }))();
   },
   _convertToObject: function _convertToObject(buffer) {
+    if (buffer.constructor !== Uint8Array) throw new Error('Buffer must be type of Uint8Array');
     var string = String.fromCharCode.apply(null, buffer);
-    console.log(string);
     var lines = string.split('\n');
     lines.shift();
     var data = {};
