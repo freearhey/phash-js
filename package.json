@@ -1,11 +1,8 @@
 {
   "name": "phash-js",
-  "version": "0.0.1",
-  "description": "Perceptual image hashing for browsers",
+  "version": "0.1.0",
+  "description": "Perceptual image hashing in the browser without using HTML canvas",
   "main": "dist/phash.js",
-  "directories": {
-    "test": "tests"
-  },
   "scripts": {
     "dev": "watchify src/index.js -o dist/phash.js",
     "build": "browserify src/index.js -o dist/phash.js",
