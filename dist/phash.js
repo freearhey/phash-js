@@ -6912,6 +6912,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+var _typeof2 = _interopRequireDefault(require("@babel/runtime/helpers/typeof"));
+
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
@@ -6954,7 +6956,7 @@ var Hash = /*#__PURE__*/function () {
 }();
 
 var pHash = {
-  hash: function hash(file) {
+  hash: function hash(input) {
     var _this = this;
 
     return (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee() {
@@ -6964,7 +6966,7 @@ var pHash = {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _this._readFileAsArrayBuffer(file);
+              return _this._readFileAsArrayBuffer(input);
 
             case 2:
               image = _context.sent;
@@ -6984,7 +6986,8 @@ var pHash = {
       }, _callee);
     }))();
   },
-  _readFileAsArrayBuffer: function _readFileAsArrayBuffer(file) {
+  _readFileAsArrayBuffer: function _readFileAsArrayBuffer(input) {
+    if (input.constructor !== File) throw new Error('Input must be type of File');
     return new Promise(function (resolve) {
       var reader = new FileReader();
 
@@ -6994,7 +6997,7 @@ var pHash = {
         }
       };
 
-      reader.readAsArrayBuffer(file);
+      reader.readAsArrayBuffer(input);
     });
   },
   _resizeImage: function _resizeImage(content) {
@@ -7004,19 +7007,27 @@ var pHash = {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
+              if (!(content.constructor !== ArrayBuffer)) {
+                _context2.next = 2;
+                break;
+              }
+
+              throw new Error('Content must be type of ArrayBuffer');
+
+            case 2:
               files = [{
                 name: 'input.jpg',
                 content: content
               }];
               command = ['convert', 'input.jpg', '-resize', '32x32!', 'output.txt'];
-              _context2.next = 4;
+              _context2.next = 6;
               return Magick.Call(files, command);
 
-            case 4:
+            case 6:
               output = _context2.sent;
               return _context2.abrupt("return", output[0].buffer);
 
-            case 6:
+            case 8:
             case "end":
               return _context2.stop();
           }
@@ -7058,6 +7069,7 @@ var pHash = {
     return data;
   },
   _calculateHash: function _calculateHash(data) {
+    if ((0, _typeof2["default"])(data) !== 'object') throw new Error('Data must be type of object');
     var matrix = [];
     var row = [];
     var rows = [];
@@ -7067,6 +7079,7 @@ var pHash = {
     for (var y = 0; y < size; y++) {
       for (var x = 0; x < size; x++) {
         var color = data["".concat(x, ",").concat(y)];
+        if (!color) throw new Error("There is no data for a pixel at [".concat(x, ", ").concat(y, "]"));
         row[x] = parseInt(Math.floor(color.r * 0.299 + color.g * 0.587 + color.b * 0.114));
       }
 
@@ -7217,4 +7230,4 @@ if (window !== 'undefined') {
   window.pHash = pHash;
 }
 
-},{"@babel/runtime/helpers/asyncToGenerator":1,"@babel/runtime/helpers/classCallCheck":2,"@babel/runtime/helpers/createClass":3,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/helpers/interopRequireWildcard":5,"@babel/runtime/regenerator":7,"wasm-imagemagick":25}]},{},[104]);
+},{"@babel/runtime/helpers/asyncToGenerator":1,"@babel/runtime/helpers/classCallCheck":2,"@babel/runtime/helpers/createClass":3,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/helpers/interopRequireWildcard":5,"@babel/runtime/helpers/typeof":6,"@babel/runtime/regenerator":7,"wasm-imagemagick":25}]},{},[104]);

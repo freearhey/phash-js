@@ -19,15 +19,17 @@ class Hash {
 }
 
 const pHash = {
-  async hash(file) {
-    let image = await this._readFileAsArrayBuffer(file)
+  async hash(input) {
+    let image = await this._readFileAsArrayBuffer(input)
     image = await this._resizeImage(image)
     const data = this._convertToObject(image)
 
     return this._calculateHash(data)
   },
 
-  _readFileAsArrayBuffer(file) {
+  _readFileAsArrayBuffer(input) {
+    if(input.constructor !== File) throw new Error('Input must be type of File')
+
     return new Promise(resolve => {
       const reader = new FileReader()
       reader.onload = () => {
@@ -35,11 +37,13 @@ const pHash = {
           resolve(reader.result)
         }
       }
-      reader.readAsArrayBuffer(file)
+      reader.readAsArrayBuffer(input)
     })
   },
 
   async _resizeImage(content) {
+    if(content.constructor !== ArrayBuffer) throw new Error('Content must be type of ArrayBuffer')
+
     const files = [{ name: 'input.jpg', content }]
     const command = ['convert', 'input.jpg', '-resize', '32x32!', 'output.txt']
     const output = await Magick.Call(files, command)
@@ -68,6 +72,8 @@ const pHash = {
   },
 
   _calculateHash(data) {
+    if(typeof data !== 'object') throw new Error('Data must be type of object')
+
     let matrix = []
     let row = []
     let rows = []
@@ -76,7 +82,9 @@ const pHash = {
     const size = 32
     for (let y = 0; y < size; y++) {
       for (let x = 0; x < size; x++) {
-        let color = data[`${x},${y}`]
+        const color = data[`${x},${y}`]
+        if(!color) throw new Error(`There is no data for a pixel at [${x}, ${y}]`)
+
         row[x] = parseInt(Math.floor(color.r * 0.299 + color.g * 0.587 + color.b * 0.114))
       }
       rows[y] = this._calculateDCT(row)
