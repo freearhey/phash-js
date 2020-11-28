@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Perceptual image hashing in the browser without using HTML canvas",
   "main": "dist/phash.js",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "dev": "watchify src/index.js -o dist/phash.js",
     "build": "browserify src/index.js -o dist/phash.js",
