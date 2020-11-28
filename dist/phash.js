@@ -6958,62 +6958,104 @@ var pHash = {
     var _this = this;
 
     return (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee() {
-      var content, files, command, output, buffer, info, data, lines, _iterator, _step, line, parts, key, value;
-
+      var image, data;
       return _regenerator["default"].wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _this._readAsArrayBuffer(file);
+              return _this._readFileAsArrayBuffer(file);
 
             case 2:
-              content = _context.sent;
-              files = [{
-                name: 'input.jpg',
-                content: content
-              }];
-              command = ['convert', 'input.jpg', '-resize', '32x32!', 'output.txt'];
-              _context.next = 7;
-              return Magick.Call(files, command);
+              image = _context.sent;
+              _context.next = 5;
+              return _this._resizeImage(image);
 
-            case 7:
-              output = _context.sent;
-              buffer = output[0].buffer;
-              info = String.fromCharCode.apply(null, buffer);
-              data = {};
-              lines = info.split('\n');
-              lines.shift();
-              _iterator = _createForOfIteratorHelper(lines);
-
-              try {
-                for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                  line = _step.value;
-                  parts = line.split(' ').filter(function (v) {
-                    return v;
-                  });
-
-                  if (parts[0] && parts[2]) {
-                    key = parts[0].replace(':', '');
-                    value = _this._convertToRGB(parts[2]);
-                    data[key] = value;
-                  }
-                }
-              } catch (err) {
-                _iterator.e(err);
-              } finally {
-                _iterator.f();
-              }
-
+            case 5:
+              image = _context.sent;
+              data = _this._convertToObject(image);
               return _context.abrupt("return", _this._calculateHash(data));
 
-            case 16:
+            case 8:
             case "end":
               return _context.stop();
           }
         }
       }, _callee);
     }))();
+  },
+  _readFileAsArrayBuffer: function _readFileAsArrayBuffer(file) {
+    return new Promise(function (resolve) {
+      var reader = new FileReader();
+
+      reader.onload = function () {
+        if (reader.result) {
+          resolve(reader.result);
+        }
+      };
+
+      reader.readAsArrayBuffer(file);
+    });
+  },
+  _resizeImage: function _resizeImage(content) {
+    return (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2() {
+      var files, command, output;
+      return _regenerator["default"].wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              files = [{
+                name: 'input.jpg',
+                content: content
+              }];
+              command = ['convert', 'input.jpg', '-resize', '32x32!', 'output.txt'];
+              _context2.next = 4;
+              return Magick.Call(files, command);
+
+            case 4:
+              output = _context2.sent;
+              return _context2.abrupt("return", output[0].buffer);
+
+            case 6:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  },
+  _convertToObject: function _convertToObject(buffer) {
+    var string = String.fromCharCode.apply(null, buffer);
+    console.log(string);
+    var lines = string.split('\n');
+    lines.shift();
+    var data = {};
+
+    var _iterator = _createForOfIteratorHelper(lines),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var line = _step.value;
+        var parts = line.split(' ').filter(function (v) {
+          return v;
+        });
+
+        if (parts[0] && parts[2]) {
+          var key = parts[0].replace(':', '');
+
+          var value = this._convertToRGB(parts[2]);
+
+          data[key] = value;
+        }
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+
+    return data;
   },
   _calculateHash: function _calculateHash(data) {
     var matrix = [];
@@ -7063,30 +7105,30 @@ var pHash = {
   compare: function compare(file1, file2) {
     var _this2 = this;
 
-    return (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2() {
+    return (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3() {
       var hash1, hash2;
-      return _regenerator["default"].wrap(function _callee2$(_context2) {
+      return _regenerator["default"].wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
-              _context2.next = 2;
+              _context3.next = 2;
               return _this2.hash(file1);
 
             case 2:
-              hash1 = _context2.sent;
-              _context2.next = 5;
+              hash1 = _context3.sent;
+              _context3.next = 5;
               return _this2.hash(file2);
 
             case 5:
-              hash2 = _context2.sent;
-              return _context2.abrupt("return", _this2.distance(hash1, hash2));
+              hash2 = _context3.sent;
+              return _context3.abrupt("return", _this2.distance(hash1, hash2));
 
             case 7:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
-      }, _callee2);
+      }, _callee3);
     }))();
   },
   distance: function distance(hash1, hash2) {
@@ -7121,20 +7163,6 @@ var pHash = {
     }
 
     return retArr;
-  },
-  _readAsArrayBuffer: function _readAsArrayBuffer(file) {
-    return new Promise(function (resolve) {
-      if (!window.FileReader) throw new Error('FileReader API is not available in this environment.');
-      var reader = new FileReader();
-
-      reader.onload = function (event) {
-        var arrayBuffer = event.target.result;
-        var sourceBytes = new Uint8Array(arrayBuffer);
-        resolve(sourceBytes);
-      };
-
-      reader.readAsArrayBuffer(file);
-    });
   },
 
   /**
