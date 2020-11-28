@@ -2,6 +2,8 @@
 
 pHash provides perceptual hashing and visual comparison of images in the browser without using HTML canvas.
 
+<a href="https://freearhey.github.io/phash-js/demo/index.html" target="_blank">Demo</a>
+
 ## Installation
 
 ```html
