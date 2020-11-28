@@ -1,4 +1,4 @@
-# pHash
+# pHash [![Build Status](https://travis-ci.org/freearhey/phash-js.svg?branch=master)](https://travis-ci.org/freearhey/phash-js)
 
 pHash provides perceptual hashing and visual comparison of images in the browser without using HTML canvas.
 
