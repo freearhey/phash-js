@@ -7,8 +7,8 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "dev": "watchify src/index.js -o dist/phash.js && cp src/magick.wasm dist/ && cp src/magick.js dist/",
-    "build": "browserify src/index.js -o dist/phash.js && cp src/magick.wasm dist/ && cp src/magick.js dist/",
+    "dev": "cp src/magick.wasm dist/ && cp src/magick.js dist/ && watchify src/index.js -o dist/phash.js",
+    "build": "cp src/magick.wasm dist/ && cp src/magick.js dist/ && browserify src/index.js -o dist/phash.js",
     "test": "npx jest"
   },
   "keywords": [
