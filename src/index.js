@@ -1,4 +1,4 @@
-import * as Magick from 'wasm-imagemagick'
+import * as Magick from './magickApi'
 
 class Hash {
   constructor(bits) {
@@ -28,12 +28,12 @@ const pHash = {
   },
 
   _readFileAsArrayBuffer(input) {
-    if(input.constructor !== File) throw new Error('Input must be type of File')
+    if (input.constructor !== File) throw new Error('Input must be type of File')
 
     return new Promise(resolve => {
       const reader = new FileReader()
       reader.onload = () => {
-        if(reader.result) {
+        if (reader.result) {
           resolve(reader.result)
         }
       }
@@ -42,7 +42,7 @@ const pHash = {
   },
 
   async _resizeImage(content) {
-    if(content.constructor !== ArrayBuffer) throw new Error('Content must be type of ArrayBuffer')
+    if (content.constructor !== ArrayBuffer) throw new Error('Content must be type of ArrayBuffer')
 
     const files = [{ name: 'input.jpg', content }]
     const command = ['convert', 'input.jpg', '-resize', '32x32!', 'output.txt']
@@ -52,7 +52,7 @@ const pHash = {
   },
 
   _convertToObject(buffer) {
-    if(buffer.constructor !== Uint8Array) throw new Error('Buffer must be type of Uint8Array')
+    if (buffer.constructor !== Uint8Array) throw new Error('Buffer must be type of Uint8Array')
 
     const string = String.fromCharCode.apply(null, buffer)
     let lines = string.split('\n')
@@ -72,7 +72,7 @@ const pHash = {
   },
 
   _calculateHash(data) {
-    if(typeof data !== 'object') throw new Error('Data must be type of object')
+    if (typeof data !== 'object') throw new Error('Data must be type of object')
 
     let matrix = []
     let row = []
@@ -83,7 +83,7 @@ const pHash = {
     for (let y = 0; y < size; y++) {
       for (let x = 0; x < size; x++) {
         const color = data[`${x},${y}`]
-        if(!color) throw new Error(`There is no data for a pixel at [${x}, ${y}]`)
+        if (!color) throw new Error(`There is no data for a pixel at [${x}, ${y}]`)
 
         row[x] = parseInt(Math.floor(color.r * 0.299 + color.g * 0.587 + color.b * 0.114))
       }
@@ -201,6 +201,6 @@ const pHash = {
 
 export default pHash
 
-if(window !== 'undefined') {
+if (window !== 'undefined') {
   window.pHash = pHash
 }

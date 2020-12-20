@@ -1,9 +1,9 @@
-import Magick from 'wasm-imagemagick'
+import Magick from '../src/magickApi.js'
 import pHash from '../src/index.js'
 import data from './data/object.json'
 import buffer from './data/buffer.json'
 
-jest.mock('wasm-imagemagick', () => {
+jest.mock('../src/magickApi.js', () => {
   return {
     Call: jest.fn()
   }
