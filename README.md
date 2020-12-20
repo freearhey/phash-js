@@ -15,7 +15,7 @@ pHash provides perceptual hashing and visual comparison of images in the browser
   <body>
     <input id="input" type="file" accept="image/*" />
     ...
-  
+
     <script src="https://cdn.jsdelivr.net/npm/phash-js/dist/phash.js"></script>
     <script>
       const input = document.getElementById('input')
@@ -55,7 +55,7 @@ If you try to generate an image hash using the HTML Canvas will notice that it c
 
 ## Caveats
 
-Since one of the dependencies of the library is [KnicKnic/WASM-ImageMagick](https://github.com/KnicKnic/WASM-ImageMagick), its work requires a file `magick.wasm`, which size exceeds 4Mb.
+This tool requires the WASM version of ImageMagick to be downloaded to the client, which is more than 4Mb.
 
 ## Contribute
 
