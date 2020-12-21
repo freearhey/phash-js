@@ -1,5 +1,7 @@
 import * as Magick from './magickApi'
 
+const supportedTypes = ['image/jpeg', 'image/png', 'image/tiff', 'image/bmp']
+
 class Hash {
   constructor(bits) {
     this.value = bits.join('')
@@ -29,6 +31,10 @@ const pHash = {
 
   _readFileAsArrayBuffer(input) {
     if (input.constructor !== File) throw new Error('Input must be type of File')
+    if (!supportedTypes.includes(input.type))
+      throw new Error(
+        `Input file must be of one of the supported types: ${supportedTypes.join(', ')}`
+      )
 
     return new Promise(resolve => {
       const reader = new FileReader()

@@ -3945,6 +3945,8 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+var supportedTypes = ['image/jpeg', 'image/png', 'image/tiff', 'image/bmp'];
+
 var Hash = /*#__PURE__*/function () {
   function Hash(bits) {
     (0, _classCallCheck2["default"])(this, Hash);
@@ -4003,6 +4005,7 @@ var pHash = {
   },
   _readFileAsArrayBuffer: function _readFileAsArrayBuffer(input) {
     if (input.constructor !== File) throw new Error('Input must be type of File');
+    if (!supportedTypes.includes(input.type)) throw new Error("Input file must be of one of the supported types: ".concat(supportedTypes.join(', ')));
     return new Promise(function (resolve) {
       var reader = new FileReader();
 
