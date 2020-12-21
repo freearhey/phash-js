@@ -30,7 +30,7 @@ describe('pHash', () => {
       return [{ buffer: new Uint8Array(buffer) }]
     })
 
-    const file = new File([new ArrayBuffer(1)], 'image.jpg')
+    const file = new File([new ArrayBuffer(1)], 'image.jpg', { type: 'image/jpeg' })
     const hash = await pHash.hash(file)
 
     expect(hash.value).toBe('1011010111010110010100100000101100101011001011110011110111110111')
