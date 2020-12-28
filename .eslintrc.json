@@ -1,0 +1,20 @@
+{
+  "extends": ["standard", "prettier"],
+  "plugins": ["jest"],
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest/globals": true
+  },
+  "parserOptions": {
+    "parser": "babel-eslint",
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  },
+  "rules": {
+    "new-cap": ["error", { "newIsCap": false }],
+    "comma-dangle": ["error", "never"],
+    "space-before-function-paren": ["error", { "anonymous": "always", "named": "never" }],
+    "prefer-promise-reject-errors": "off"
+  }
+}
