@@ -4179,13 +4179,13 @@ var pHash = {
     var k = '';
     var arr = {};
 
-    arr1keys: for (k1 in arr1) {
+    for (k1 in arr1) {
       for (i = 1; i < argl; i++) {
         arr = arguments[i];
 
         for (k in arr) {
           if (arr[k] === arr1[k1] && k === k1) {
-            continue arr1keys;
+            continue;
           }
         }
 
@@ -4212,7 +4212,7 @@ var pHash = {
 
       sum *= Math.sqrt(2 / size);
 
-      if (i == 0) {
+      if (i === 0) {
         sum *= 1 / Math.sqrt(2);
       }
 

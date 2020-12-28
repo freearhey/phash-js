@@ -52,7 +52,7 @@ const pHash = {
 
     const files = [{ name: 'input.jpg', content }]
     const command = ['convert', 'input.jpg', '-resize', '32x32!', 'output.txt']
-    const output = await Magick.Call(files, command)
+    const output = await Magick.Call(files, command) // eslint-disable-line new-cap
 
     return output[0].buffer
   },
@@ -61,11 +61,11 @@ const pHash = {
     if (buffer.constructor !== Uint8Array) throw new Error('Buffer must be type of Uint8Array')
 
     const string = String.fromCharCode.apply(null, buffer)
-    let lines = string.split('\n')
+    const lines = string.split('\n')
     lines.shift()
 
-    let data = {}
-    for (let line of lines) {
+    const data = {}
+    for (const line of lines) {
       const parts = line.split(' ').filter(v => v)
       if (parts[0] && parts[2]) {
         const key = parts[0].replace(':', '')
@@ -80,10 +80,10 @@ const pHash = {
   _calculateHash(data) {
     if (typeof data !== 'object') throw new Error('Data must be type of object')
 
-    let matrix = []
-    let row = []
-    let rows = []
-    let col = []
+    const matrix = []
+    const row = []
+    const rows = []
+    const col = []
 
     const size = 32
     for (let y = 0; y < size; y++) {
@@ -104,7 +104,7 @@ const pHash = {
     }
 
     // Extract the top 8x8 pixels.
-    let pixels = []
+    const pixels = []
     for (let y = 0; y < 8; y++) {
       for (let x = 0; x < 8; x++) {
         pixels.push(matrix[y][x])
@@ -112,9 +112,9 @@ const pHash = {
     }
 
     // Calculate hash.
-    let bits = []
+    const bits = []
     const compare = this._average(pixels)
-    for (let pixel of pixels) {
+    for (const pixel of pixels) {
       bits.push(pixel > compare ? 1 : 0)
     }
 
@@ -147,12 +147,12 @@ const pHash = {
     let i = 1
     let k = ''
     let arr = {}
-    arr1keys: for (k1 in arr1) {
+    for (k1 in arr1) {
       for (i = 1; i < argl; i++) {
         arr = arguments[i]
         for (k in arr) {
           if (arr[k] === arr1[k1] && k === k1) {
-            continue arr1keys
+            continue
           }
         }
         retArr[k1] = arr1[k1]
@@ -165,7 +165,7 @@ const pHash = {
    * Perform a 1 dimension Discrete Cosine Transformation.
    */
   _calculateDCT(matrix) {
-    let transformed = []
+    const transformed = []
     const size = matrix.length
 
     for (let i = 0; i < size; i++) {
@@ -174,7 +174,7 @@ const pHash = {
         sum += matrix[j] * Math.cos((i * Math.PI * (j + 0.5)) / size)
       }
       sum *= Math.sqrt(2 / size)
-      if (i == 0) {
+      if (i === 0) {
         sum *= 1 / Math.sqrt(2)
       }
       transformed[i] = sum
@@ -194,7 +194,7 @@ const pHash = {
   },
 
   _convertToRGB(hex) {
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})/i.exec(hex)
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})/i.exec(hex)
     return result
       ? {
           r: parseInt(result[1], 16),

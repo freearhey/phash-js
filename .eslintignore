@@ -1,2 +1,5 @@
 /demo/*.js
 /dist/*.js
+/src/magick.js
+/src/magick.wasm
+/src/magickApi.js
