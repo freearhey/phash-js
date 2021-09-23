@@ -1,6 +1,6 @@
 {
   "name": "phash-js",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "Perceptual image hashing in the browser without using HTML canvas",
   "main": "dist/phash.js",
   "publishConfig": {
